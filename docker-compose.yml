@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.5
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mantis
+      MYSQL_USER: mantis
+      MYSQL_PASSWORD: mantis
+    volumes:
+      - db_data:/var/lib/mysql
+
+  mantis:
+    image: vimagick/mantisbt
+    restart: always
+    ports:
+      - "8080:80"   # <- ESTE PUERTO ES CLAVE
+    environment:
+      DB_TYPE: mysqli
+      DB_HOST: db
+      DB_NAME: mantis
+      DB_USER: mantis
+      DB_PASSWORD: mantis
+    depends_on:
+      - db
+
+volumes:
+  db_data:
