@@ -5,10 +5,12 @@ services:
     image: vimagick/mantisbt
     restart: always
     ports:
-      - "80:80"  # <- puerto público
+      - "80:80"
     environment:
-      DB_TYPE: mysqli
-      DB_HOST: mysql.railway.internal
-      DB_NAME: railway
-      DB_USER: root
-      DB_PASSWORD: wapQVAmqRtABsoRrdWLQwMZwdwIxvNtT
+      DB_TYPE: sqlite
+      DB_NAME: /data/mantis.db
+    volumes:
+      - mantis_data:/data
+
+volumes:
+  mantis_data:
