@@ -2,8 +2,11 @@
 FROM vimagick/mantisbt:latest
 
 # Configuración para SQLite
-ENV DB_TYPE=sqlite
-ENV DB_NAME=/data/mantis.db
+ENV DB_TYPE=mysqli
+ENV DB_HOST=mysql
+ENV DB_NAME=railway
+ENV DB_USER=root
+ENV DB_PASSWORD=wapQVAmqRtABsoRrdWLQwMZwdwIxvNtT
 
 # Exponemos el puerto 80
 EXPOSE 80
