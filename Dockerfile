@@ -17,5 +17,9 @@ COPY testdb.php /var/www/html/testdb.php
 
 # Permisos correctos
 RUN chown -R www-data:www-data /var/www/html
+# Asegurar permisos correctos (MUY IMPORTANTE)
+RUN chown www-data:www-data /var/www/html/config/config_inc.php \
+    && chmod 640 /var/www/html/config/config_inc.php
+
 
 EXPOSE 80
