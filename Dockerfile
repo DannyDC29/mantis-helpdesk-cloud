@@ -1,13 +1,12 @@
 FROM vimagick/mantisbt:latest
 
-ENV DB_TYPE=mysqli
-
-# VARIABLES QUE VIENEN DE RAILWAY
-ENV DB_HOST=${MYSQLHOST}
-ENV DB_PORT=${MYSQLPORT}
-ENV DB_NAME=${MYSQLDATABASE}
-ENV DB_USER=${MYSQLUSER}
-ENV DB_PASSWORD=${MYSQLPASSWORD}
+# NO ponemos valores aquí, Railway los inyecta
+ENV DB_TYPE=${DB_TYPE}
+ENV DB_HOST=${DB_HOST}
+ENV DB_PORT=${DB_PORT}
+ENV DB_NAME=${DB_NAME}
+ENV DB_USER=${DB_USER}
+ENV DB_PASSWORD=${DB_PASSWORD}
 
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
