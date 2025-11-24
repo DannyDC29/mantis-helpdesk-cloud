@@ -7,20 +7,13 @@ $user = 'root';
 $pass = 'RvyyjdRVXfXpaiPoKtnqzznNKDWFJnNZ';
 $db   = 'railway';
 
-echo "=== MantisBT Railway DB Connection Test ===\n\n";
-echo "Host: $host\n";
-echo "Port: $port\n";
-echo "User: $user\n";
-echo "Database: $db\n\n";
-
-echo "Connecting...\n\n";
+echo "=== Railway DB Connection Test ===\n\n";
 
 $mysqli = @new mysqli($host, $user, $pass, $db, $port);
 
 if ($mysqli->connect_errno) {
-    echo "❌ CONNECTION FAILED\n";
-    echo "Error code: " . $mysqli->connect_errno . "\n";
-    echo "Message: " . $mysqli->connect_error . "\n";
+    echo "❌ Connection Failed\n";
+    echo $mysqli->connect_errno . " - " . $mysqli->connect_error;
 } else {
-    echo "✅ SUCCESS! Connected to MySQL.\n";
+    echo "✅ SUCCESS: Connected to MySQL\n";
 }
