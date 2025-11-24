@@ -11,5 +11,8 @@ ENV DB_PASSWORD=${DB_PASSWORD}
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+# BORRAR CONFIG ANTERIOR
+RUN rm -f /var/www/html/config/config_inc.php
+
 EXPOSE 80
 CMD ["/entrypoint.sh"]
