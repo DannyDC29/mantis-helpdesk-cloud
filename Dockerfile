@@ -1,4 +1,4 @@
-FROM mantisbt/mantisbt:stable
+FROM vimagick/mantisbt:latest
 
 ENV DB_TYPE=mysqli
 ENV DB_HOST=${DB_HOST}
@@ -11,5 +11,4 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 EXPOSE 80
-
 CMD ["/entrypoint.sh"]
