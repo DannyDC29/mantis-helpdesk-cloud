@@ -15,6 +15,7 @@ RUN curl -L -o /tmp/mantis.zip https://downloads.sourceforge.net/project/mantisb
 COPY config/config_inc.php /var/www/html/config/config_inc.php
 
 COPY testdb.php /var/www/html/testdb.php
+RUN chown -R www-data:www-data /var/www/html
 
 # Permisos correctos
 RUN chown -R www-data:www-data /var/www/html \
