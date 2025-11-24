@@ -1,21 +1,15 @@
-FROM php:8.1-apache
+FROM mantisbt/mantisbt:latest
 
-RUN docker-php-ext-install mysqli
-
-RUN apt-get update && \
-    apt-get install -y unzip && \
-    rm -rf /var/lib/apt/lists/*
-
-# Descargar MantisBT
-ADD https://downloads.sourceforge.net/project/mantisbt/mantis-stable/2.26.2/mantisbt-2.26.2.zip /tmp/mantis.zip
-RUN unzip /tmp/mantis.zip -d /var/www/html/ && \
-    mv /var/www/html/mantisbt-2.26.2/* /var/www/html && \
-    rm -rf /var/www/html/mantisbt-2.26.2 /tmp/mantis.zip
+ENV DB_TYPE=mysqli
+ENV DB_HOST=mysql.railway.internal
+ENV DB_NAME=railway
+ENV DB_USER=root
+ENV DB_PASSWORD=RvyyjdRVXfXpaiPoKtnqzznNKDWFJnNZ
+ENV DB_PORT=3306
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 EXPOSE 80
 
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["apache2-foreground"]
+CMD ["/entrypoint.sh"]
