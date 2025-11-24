@@ -3,6 +3,9 @@ FROM php:7.4-apache
 # Instalar extensiones necesarias
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
+# instalar unzip (ESTO ES LO QUE TE FALTABA)
+RUN apt-get update && apt-get install -y unzip
+
 # Descargar MantisBT
 RUN curl -L -o /tmp/mantis.zip https://downloads.sourceforge.net/project/mantisbt/mantis-stable/2.26.2/mantisbt-2.26.2.zip \
     && unzip /tmp/mantis.zip -d /var/www/html \
