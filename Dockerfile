@@ -1,11 +1,13 @@
 FROM vimagick/mantisbt:latest
 
 ENV DB_TYPE=mysqli
-ENV DB_HOST=yamabiko.proxy.rlwy.net
-ENV DB_PORT=43656
-ENV DB_NAME=railway
-ENV DB_USER=root
-ENV DB_PASSWORD=RvyyjdRVXfXpaiPoKtnqzznNKDWFJnNZ
+
+# VARIABLES QUE VIENEN DE RAILWAY
+ENV DB_HOST=${MYSQLHOST}
+ENV DB_PORT=${MYSQLPORT}
+ENV DB_NAME=${MYSQLDATABASE}
+ENV DB_USER=${MYSQLUSER}
+ENV DB_PASSWORD=${MYSQLPASSWORD}
 
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
