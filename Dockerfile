@@ -1,10 +1,21 @@
-FROM mantisbt/mantisbt:latest
+FROM php:8.2-apache
 
-# Copiar archivo de configuración personalizado
+# Instalar dependencias
+RUN apt-get update && apt-get install -y unzip curl libpng-dev libjpeg-dev libfreetype6-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd mysqli pdo pdo_mysql
+
+# Descargar MantisBT
+RUN curl -L -o /tmp/mantis.zip https://downloads.sourceforge.net/project/mantisbt/mantis-stable/2.26.2/mantisbt-2.26.2.zip \
+    && unzip /tmp/mantis.zip -d /var/www/html \
+    && mv /var/www/html/mantisbt-2.26.2/* /var/www/html/ \
+    && rm -rf /tmp/mantis.zip /var/www/html/mantisbt-2.26.2
+
+# Copiar config_inc.php
 COPY config/config_inc.php /var/www/html/config/config_inc.php
 
-# Permisos correctos para que Mantis lo lea
-RUN chown www-data:www-data /var/www/html/config/config_inc.php \
+# Permisos correctos
+RUN chown -R www-data:www-data /var/www/html \
     && chmod 640 /var/www/html/config/config_inc.php
 
 EXPOSE 80
