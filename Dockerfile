@@ -1,4 +1,4 @@
-FROM mantisbt/mantisbt:latest
+FROM mantisbt/mantisbt:stable
 
 ENV DB_TYPE=mysqli
 ENV DB_HOST=${DB_HOST}
