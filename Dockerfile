@@ -1,15 +1,18 @@
-# Usamos la imagen de MantisBT
 FROM vimagick/mantisbt:latest
 
-# Configuración para SQLite
-ENV DB_TYPE=${DB_TYPE}
+# Variables de entorno (Railway las inyecta)
+ENV DB_TYPE=mysqli
 ENV DB_HOST=${MYSQLHOST}
 ENV DB_NAME=${MYSQLDATABASE}
 ENV DB_USER=${MYSQLUSER}
 ENV DB_PASSWORD=${MYSQLPASSWORD}
 
-# Exponemos el puerto 80
+# Crear config_inc.php automáticamente
+RUN mkdir -p /var/www/html/config
+
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 EXPOSE 80
 
-# Comando para iniciar Mantis
-CMD ["apache2-foreground"]
+CMD ["/entrypoint.sh"]
