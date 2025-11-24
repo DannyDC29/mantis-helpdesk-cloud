@@ -8,4 +8,11 @@ $g_db_password = 'RvyyjdRVXfXpaiPoKtnqzznNKDWFJnNZ';
 $g_db_port = 43656;
 
 $g_default_timezone = 'UTC';
-$g_crypto_master_salt = 'XyZabcdefghijklmnopqrstuvwyzABCDEFGHIJK123456789';
+
+/**
+ * crypto_master_salt
+ * MUST be at least 16 characters, ONLY ASCII letters/numbers allowed.
+ */
+$g_crypto_master_salt = 'Km49Fh28Ds91Lp73QcXw9Ze81RtP6Uy3';
+
+?>
